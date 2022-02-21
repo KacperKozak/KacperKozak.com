@@ -1,9 +1,10 @@
+/// <reference types="next/image-types/global" />
+
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import Image from 'next/image'
 import icon from '../assets/icon.svg'
 import styles from '../styles/Home.module.css'
-
-console.log(icon)
 
 const Home: NextPage = () => {
     return (
@@ -12,10 +13,9 @@ const Home: NextPage = () => {
                 <title>Kacper Kozak - Front-end Developer</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-
             <main className={styles.main}>
                 <div>
-                    <img src={icon.src} width="200" alt="" />
+                    <Image src={icon} width="200" height="200" alt="" />
                 </div>
                 <h1 className={styles.title}>Kacper Kozak</h1>
             </main>
