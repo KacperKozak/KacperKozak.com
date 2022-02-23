@@ -1,10 +1,10 @@
 /// <reference types="next/image-types/global" />
 
+import { Button } from 'components/buttons/Button'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import icon from '../assets/icon.svg'
-import { Button } from '../components/buttons/Button'
 import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
