@@ -13,7 +13,7 @@ body {
 }
 
 body {
-    background: url('../assets/bg.png') no-repeat center center fixed;
+    background: #000;
     background-size: cover;
     color: white;
 }
