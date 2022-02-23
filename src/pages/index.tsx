@@ -1,8 +1,8 @@
+import styled from '@emotion/styled'
 import { Button } from 'components/buttons/Button'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import styled from 'styled-components'
 import bg from '../assets/bg.png'
 import icon from '../assets/icon.svg'
 
