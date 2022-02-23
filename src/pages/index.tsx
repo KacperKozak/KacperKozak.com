@@ -4,6 +4,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import icon from '../assets/icon.svg'
+import { Button } from '../components/buttons/Button'
 import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
@@ -18,6 +19,7 @@ const Home: NextPage = () => {
                     <Image src={icon} width="200" height="200" alt="" />
                 </div>
                 <h1 className={styles.title}>Kacper Kozak</h1>
+                <Button label="Hello" />
             </main>
         </div>
     )
