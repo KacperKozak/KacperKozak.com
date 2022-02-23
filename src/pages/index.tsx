@@ -14,7 +14,7 @@ const Home: NextPage = () => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <BgWrapper>
-                <Image src={bg} layout="fill" objectFit="cover" quality={100} />
+                <Image src={bg} layout="fill" objectFit="cover" />
             </BgWrapper>
             <Container>
                 <div>
