@@ -16,6 +16,7 @@ body {
     background: #000;
     background-size: cover;
     color: white;
+    overflow-x: hidden;
 }
 
 a {

@@ -3,8 +3,9 @@ import { Button } from 'components/buttons/Button'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import bg from '../assets/bg.png'
+import React from 'react'
 import icon from '../assets/icon.svg'
+import { Background } from '../components/bg/Background'
 
 const Home: NextPage = () => {
     return (
@@ -13,9 +14,6 @@ const Home: NextPage = () => {
                 <title>Kacper Kozak - Front-end Developer</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <BgWrapper>
-                <Image src={bg} layout="fill" objectFit="cover" />
-            </BgWrapper>
             <Container>
                 <div>
                     <Image src={icon} width="200" height="200" alt="" />
@@ -23,19 +21,12 @@ const Home: NextPage = () => {
                 <Title>Kacper Kozak</Title>
                 <Button label="Hello" />
             </Container>
+            <Background />
         </>
     )
 }
 
 export default Home
-
-const BgWrapper = styled.div({
-    position: 'fixed',
-    height: '100vh',
-    width: '100vw',
-    overflow: 'hidden',
-    zIndex: -1,
-})
 
 const Container = styled.main({
     padding: '50px',
