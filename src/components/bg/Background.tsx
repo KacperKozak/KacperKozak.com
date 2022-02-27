@@ -19,8 +19,8 @@ export const Background = () => {
                 <Node
                     shader={shaders.helloBlue}
                     uniforms={{
-                        iTime: time / 100,
-                        iResolution: [width, height],
+                        time: time / 100,
+                        resolution: [width, height],
                     }}
                 />
             </Surface>
@@ -34,5 +34,5 @@ const Wrapper = styled.div({
     right: 0,
     bottom: 0,
     zIndex: -1,
-    opacity: 0.15,
+    opacity: 0.4,
 })

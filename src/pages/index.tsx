@@ -15,9 +15,7 @@ const Home: NextPage = () => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Container>
-                <div>
-                    <Image src={icon} width="200" height="200" alt="" />
-                </div>
+                <Image src={icon} width="200" height="200" alt="" />
                 <Title>Kacper Kozak</Title>
                 <Button label="Hello" />
             </Container>
