@@ -1,7 +1,6 @@
 import styled from '@emotion/styled'
 import {
     delay,
-    easeOut,
     fromTo,
     htmlElementRenderer,
     lightTrails,
@@ -10,10 +9,8 @@ import {
     trail,
     val,
 } from 'light-trails'
-import Image from 'next/image'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { white } from 'styles/theme'
-import triangle from './assets/triangle.svg'
 import { Signet } from './Signet'
 
 export const Logo = () => {
