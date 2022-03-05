@@ -3,24 +3,21 @@ import { GLSL, Shaders } from 'gl-react'
 const lineShader = GLSL`
     #version 300 es
 
-    precision highp float;
+    precision lowp float;
 
     out vec4 color;
 
     uniform float time;
     uniform vec2 resolution;
 
-    // --------------------------------------------------------
-    // Simplex(ish) Noise
-    // Shane https://www.shadertoy.com/view/ldscWH
-    // --------------------------------------------------------
+    float lineCount = 2.0;
 
     vec3 hash33(vec3 p) { 
-        float n = sin(dot(p, vec3(7, 157, 113)));    
-        return fract(vec3(2097152, 262144, 32768)*n)*2. - 1.;
+        float n = sin(dot(p, vec3(7, 157, 113)));
+        return fract(vec3(2097152, 262144, 32768) * n) * 2.0 - 1.0;
     }
 
-    float tetraNoise(in vec3 p) {
+    float simplexNoise(in vec3 p) {
         vec3 i = floor(p + dot(p, vec3(0.333333)) );  p -= i - dot(i, vec3(0.166666)) ;
         vec3 i1 = step(p.yzx, p), i2 = max(i1, 1.0-i1.zxy); i1 = min(i1, 1.0-i1.zxy);    
         vec3 p1 = p - i1 + 0.166666, p2 = p - i2 + 0.333333, p3 = p - 0.5;
@@ -28,29 +25,6 @@ const lineShader = GLSL`
         vec4 d = vec4(dot(p, hash33(i)), dot(p1, hash33(i + i1)), dot(p2, hash33(i + i2)), dot(p3, hash33(i + 1.)));
         return clamp(dot(d, v*v*v*8.)*1.732 + .5, 0., 1.);
     }
-
-    // --------------------------------------------------------
-    // Repeat space and blend the edges
-    //
-    // Imagine we have the following domain:
-    // 0 1 2 3 4 5 6 7 8 9 ...
-    //
-    // If you repeat with a size of 3, you get hard edges
-    // between 2 and 0:
-    // 0 1 2 0 1 2 0 1 2 ...
-    //
-    // You could flip each repetition, but you'd see a visible
-    // mirror effect:
-    // 0 1 2 2 1 0 0 1 2 ...
-    // 
-    // So instead, take two samples out of phase:
-    // 0 1 2 0 1 2 0 1 2 ...
-    // 2 0 1 2 0 1 2 0 1 ...
-    //
-    // And then blend the samples at these points in such a way
-    // that the visible joins of one sample are masked by the 
-    // continuous part of the other sample.
-    // --------------------------------------------------------
 
     #define PI 3.14159265359
 
@@ -73,7 +47,7 @@ const lineShader = GLSL`
     void main()
     {
         // Square uv centered and sclead to the screen height
-        vec2 uv = (-resolution.xy + 2. * gl_FragCoord.xy) / resolution.y;
+        vec2 uv = (-resolution.xy + lineCount * gl_FragCoord.xy) / resolution.y;
 
         // Zoom in a bit
         uv /= 2.0;
@@ -92,21 +66,10 @@ const lineShader = GLSL`
         // different directions
 
         ab = smoothRepeatStart(x, repeatSize);
-        noiseA = tetraNoise(16.+vec3(vec2(ab.x, uv.y) * 1.2, 0)) * .5;
-        noiseB = tetraNoise(16.+vec3(vec2(ab.y, uv.y) * 1.2, 0)) * .5;
+        noiseA = simplexNoise(16.+vec3(vec2(ab.x, uv.y) * 0.9, 0)) * .5;
+        noiseB = simplexNoise(16.+vec3(vec2(ab.y, uv.y) * 0.9, 0)) * .5;
         noise = smoothRepeatEnd(noiseA, noiseB, x, repeatSize);
 
-        ab = smoothRepeatStart(y, repeatSize / 2.);
-        noiseA = tetraNoise(vec3(vec2(uv.x, ab.x) * .5, 0)) * 2.;
-        noiseB = tetraNoise(vec3(vec2(uv.x, ab.y) * .5, 0)) * 2.;
-        noise *= smoothRepeatEnd(noiseA, noiseB, y, repeatSize / 2.);
-
-        ab = smoothRepeatStart(x, repeatSize);
-        noiseA = tetraNoise(9.+vec3(vec2(ab.x, uv.y) * .05, 0)) * 5.;
-        noiseB = tetraNoise(9.+vec3(vec2(ab.y, uv.y) * .05, 0)) * 5.;
-        noise *= smoothRepeatEnd(noiseA, noiseB, x, repeatSize);
-
-        
         noise *= 0.55;
     
         // Blend with a linear gradient, this gives the isolines a

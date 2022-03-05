@@ -27,6 +27,7 @@ export const Background = () => {
         </Wrapper>
     )
 }
+
 const Wrapper = styled.div({
     position: 'fixed',
     top: 0,
