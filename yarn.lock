@@ -1466,6 +1466,11 @@ levn@^0.4.1:
     prelude-ls "^1.2.1"
     type-check "~0.4.0"
 
+light-trails@^0.6.1:
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/light-trails/-/light-trails-0.6.1.tgz#8b77a3a77b0a30e1c7f4af72201e3bb58958d477"
+  integrity sha512-8e5JxAPA9HiTnmFQtHeRgLgFsjmyz/0dLZEMkQrkHdaFvXlI8DnUEDVF+sP3FQpGlRQpCPX3Mui/NLlqvczhVA==
+
 lines-and-columns@^1.1.6:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/lines-and-columns/-/lines-and-columns-1.2.4.tgz#eca284f75d2965079309dc0ad9255abb2ebc1632"

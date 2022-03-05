@@ -41,8 +41,8 @@ const Wrapper = styled.div({
     right: 0,
     bottom: 0,
     zIndex: -1,
-    opacity: 0.4,
-    animation: `${fadeIn} 1s ease-in-out`,
+    opacity: 0,
+    animation: `${fadeIn} 1s ease-in-out forwards 800ms`,
 })
 
 export default Background
