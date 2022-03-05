@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    reactStrictMode: true,
+    reactStrictMode: false, // react-gl and old canvas api :(
 }
 
 module.exports = nextConfig

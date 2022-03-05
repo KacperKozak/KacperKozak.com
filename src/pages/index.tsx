@@ -1,11 +1,13 @@
 import styled from '@emotion/styled'
 import { Button } from 'components/buttons/Button'
 import type { NextPage } from 'next'
+import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import Image from 'next/image'
 import React from 'react'
 import icon from '../assets/icon.svg'
-import { Background } from '../components/bg/Background'
+
+const Background = dynamic(() => import('../components/bg/Background'), { ssr: false })
 
 const Home: NextPage = () => {
     return (

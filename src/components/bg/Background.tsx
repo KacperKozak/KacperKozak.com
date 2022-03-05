@@ -1,3 +1,4 @@
+import { keyframes } from '@emotion/react'
 import styled from '@emotion/styled'
 import { Node } from 'gl-react'
 import { Surface } from 'gl-react-dom'
@@ -28,6 +29,11 @@ export const Background = () => {
     )
 }
 
+const fadeIn = keyframes({
+    from: { opacity: 0 },
+    to: { opacity: 0.4 },
+})
+
 const Wrapper = styled.div({
     position: 'fixed',
     top: 0,
@@ -36,4 +42,7 @@ const Wrapper = styled.div({
     bottom: 0,
     zIndex: -1,
     opacity: 0.4,
+    animation: `${fadeIn} 1s ease-in-out`,
 })
+
+export default Background
