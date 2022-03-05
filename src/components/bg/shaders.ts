@@ -3,7 +3,7 @@ import { GLSL, Shaders } from 'gl-react'
 const lineShader = GLSL`
     #version 300 es
 
-    precision lowp float;
+    precision mediump float;
 
     out vec4 color;
 
