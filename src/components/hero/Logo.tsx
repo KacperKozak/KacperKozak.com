@@ -1,14 +1,5 @@
 import styled from '@emotion/styled'
-import {
-    delay,
-    fromTo,
-    htmlElementRenderer,
-    lightTrails,
-    parallel,
-    sequence,
-    trail,
-    val,
-} from 'light-trails'
+import { delay, fromTo, lightTrails, parallel, sequence, trail, val } from 'light-trails'
 import { useEffect, useRef } from 'react'
 import { white } from 'styles/theme'
 import { Signet } from './Signet'
@@ -23,15 +14,15 @@ export const Logo = () => {
     useEffect(() => {
         const speed = 1200
 
-        const scaleX = fromTo({ transform: (v) => `scaleX(${v})` }, speed)
-        const scaleY = fromTo({ transform: (v) => `scaleY(${v})` }, speed / 2)
+        const scaleX = fromTo({ scaleX: val(0, 1) }, speed)
+        const scaleY = fromTo({ scaleY: val(0, 1) }, speed / 2)
         const fade = fromTo({ opacity: val(0, 1) }, speed)
 
         const topLineTrail = trail(topLineRef.current, [delay(speed / 3), scaleY])
         const leftLineTrail = trail(leftLineRef.current, [scaleX])
         const rightLineTrail = trail(rightLineRef.current, [scaleX])
         const titleTrail = trail(titleRef.current, [fade])
-        const signetTrail = trail(htmlElementRenderer(signetRef.current), [
+        const signetTrail = trail(signetRef.current, [
             fromTo({ strokeDashoffset: val(230, 0) }, speed),
         ])
 

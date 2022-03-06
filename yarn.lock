@@ -1466,10 +1466,10 @@ levn@^0.4.1:
     prelude-ls "^1.2.1"
     type-check "~0.4.0"
 
-light-trails@^0.6.1:
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/light-trails/-/light-trails-0.6.1.tgz#8b77a3a77b0a30e1c7f4af72201e3bb58958d477"
-  integrity sha512-8e5JxAPA9HiTnmFQtHeRgLgFsjmyz/0dLZEMkQrkHdaFvXlI8DnUEDVF+sP3FQpGlRQpCPX3Mui/NLlqvczhVA==
+light-trails@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/light-trails/-/light-trails-0.7.0.tgz#3eb639f9ed5b6c1b7e6b88b53863048cb42af13e"
+  integrity sha512-AuMHhNI6T2m1cj8dxkSvBINu/RsTYUGYGZMBi5Rmft1TBHIVxmXf0oubvvAC+QtOTCBqQMhSx95RUjVaygtBWg==
 
 lines-and-columns@^1.1.6:
   version "1.2.4"
