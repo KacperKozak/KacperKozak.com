@@ -3,11 +3,15 @@ import styled from '@emotion/styled'
 import { Node } from 'gl-react'
 import { Surface } from 'gl-react-dom'
 import { useTime } from 'hooks/useTime'
-import React from 'react'
+import React, { forwardRef } from 'react'
 import { shaders } from './shaders'
 
-export const Background = () => {
-    const time = useTime()
+interface BackgroundProps {
+    enabled: boolean
+}
+
+export const Background = forwardRef<HTMLDivElement, BackgroundProps>(({ enabled }, ref) => {
+    const time = useTime(enabled)
 
     if (typeof window === 'undefined') return null
 
@@ -15,7 +19,7 @@ export const Background = () => {
     const height = window.innerHeight
 
     return (
-        <Wrapper>
+        <Wrapper ref={ref}>
             <Surface width={width} height={height}>
                 <Node
                     shader={shaders.helloBlue}
@@ -27,11 +31,6 @@ export const Background = () => {
             </Surface>
         </Wrapper>
     )
-}
-
-const fadeIn = keyframes({
-    from: { opacity: 0 },
-    to: { opacity: 0.4 },
 })
 
 const Wrapper = styled.div({
@@ -42,7 +41,6 @@ const Wrapper = styled.div({
     bottom: 0,
     zIndex: -1,
     opacity: 0,
-    animation: `${fadeIn} 1s ease-in-out forwards 800ms`,
 })
 
 export default Background

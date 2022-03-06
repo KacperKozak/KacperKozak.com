@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
 
-export const useTime = () => {
+export const useTime = (enabled = true) => {
     const [time, setTime] = useState(0)
 
     useEffect(() => {
+        if (!enabled) return
+
         let ref: number
         let startTime: number
         const loop = (t: number) => {
@@ -14,7 +16,7 @@ export const useTime = () => {
         ref = requestAnimationFrame(loop)
 
         return () => cancelAnimationFrame(ref)
-    }, [])
+    }, [enabled])
 
     return time
 }

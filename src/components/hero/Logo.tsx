@@ -1,45 +1,16 @@
 import styled from '@emotion/styled'
-import { delay, fromTo, lightTrails, parallel, sequence, trail, val } from 'light-trails'
-import { useEffect, useRef } from 'react'
 import { white } from 'styles/theme'
 import { Signet } from './Signet'
+import { useHeroAnimation } from './useHeroAnimation'
 
-export const Logo = () => {
-    const titleRef = useRef<any>(null)
-    const topLineRef = useRef<any>(null)
-    const leftLineRef = useRef<any>(null)
-    const rightLineRef = useRef<any>(null)
-    const signetRef = useRef<any>(null)
+interface LogoProps {
+    anim: ReturnType<typeof useHeroAnimation>
+}
 
-    useEffect(() => {
-        const speed = 1200
-
-        const scaleX = fromTo({ scaleX: val(0, 1) }, speed)
-        const scaleY = fromTo({ scaleY: val(0, 1) }, speed / 2)
-        const fade = fromTo({ opacity: val(0, 1) }, speed)
-
-        const topLineTrail = trail(topLineRef.current, [delay(speed / 3), scaleY])
-        const leftLineTrail = trail(leftLineRef.current, [scaleX])
-        const rightLineTrail = trail(rightLineRef.current, [scaleX])
-        const titleTrail = trail(titleRef.current, [fade])
-        const signetTrail = trail(signetRef.current, [
-            fromTo({ strokeDashoffset: val(230, 0) }, speed),
-        ])
-
-        const animation = lightTrails(
-            parallel([
-                signetTrail,
-                sequence([
-                    delay(speed),
-                    parallel([titleTrail, topLineTrail, leftLineTrail, rightLineTrail]),
-                ]),
-            ]),
-        )
-
-        animation.play()
-
-        return () => animation.pause()
-    }, [])
+export const Logo = ({ anim }: LogoProps) => {
+    const {
+        refs: { titleRef, topLineRef, leftLineRef, rightLineRef, signetRef },
+    } = anim
 
     return (
         <>
@@ -67,6 +38,7 @@ const Title = styled.h1({
     fontSize: 67,
     textAlign: 'center',
     paddingBottom: 50,
+    letterSpacing: '0.1em',
 })
 
 const Line = styled.div({

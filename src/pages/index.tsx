@@ -4,8 +4,7 @@ import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import React from 'react'
 
-const Background = dynamic(() => import('../components/bg/Background'), { ssr: false })
-const Logo = dynamic(() => import('../components/hero/Logo'), { ssr: false })
+const Hero = dynamic(() => import('../components/hero/Hero'), { ssr: false })
 
 const Home: NextPage = () => {
     return (
@@ -14,18 +13,9 @@ const Home: NextPage = () => {
                 <title>Kacper Kozak - Front-end Developer</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <Container>
-                <Logo />
-            </Container>
-            <Background />
+            <Hero />
         </>
     )
 }
 
 export default Home
-
-const Container = styled.main({
-    padding: '50px',
-    maxWidth: '1200px',
-    margin: '0 auto',
-})
