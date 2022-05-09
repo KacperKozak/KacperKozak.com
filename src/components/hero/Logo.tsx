@@ -35,7 +35,7 @@ const Container = styled.header({
 
 const Title = styled.h1({
     fontWeight: 'lighter',
-    fontSize: 67,
+    fontSize: 72,
     textAlign: 'center',
     paddingBottom: 50,
     letterSpacing: '0.1em',

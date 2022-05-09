@@ -36,22 +36,22 @@ export const useHeroAnimation = () => {
             fromTo({ opacity: o(0.4) }, speed),
         ]
 
+        const signetTrail = trail(signetRef.current, [stroke])
         const topLineTrail = trail(topLineRef.current, [delay(speed / 3), scaleY])
         const leftLineTrail = trail(leftLineRef.current, [scaleX])
         const rightLineTrail = trail(rightLineRef.current, [scaleX])
         const titleTrail = trail(titleRef.current, [fade])
         const bgTrail = trail(bgRef.current, bgFade)
-        const signetTrail = trail(signetRef.current, [stroke])
 
         const animation = lightTrails(
             sequence([
                 signetTrail,
                 parallel([
-                    bgTrail,
-                    titleTrail,
                     topLineTrail,
                     leftLineTrail,
                     rightLineTrail,
+                    titleTrail,
+                    bgTrail,
                 ]),
             ]),
         )
