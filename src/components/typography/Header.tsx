@@ -13,7 +13,6 @@ export const Header = ({ children }: HeaderProps) => {
 const Container = styled.h2({
     margin: `0 0 60px`,
     color: white,
-    fontFamily: 'Source Sans Pro',
     fontStyle: 'normal',
     fontWeight: 300,
     fontSize: 64,
