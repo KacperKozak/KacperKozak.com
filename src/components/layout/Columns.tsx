@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import { ReactNode } from 'react'
+import { isMobile } from 'styles/theme'
 
 interface ColumnsProps {
     children: ReactNode
@@ -14,4 +15,7 @@ const Container = styled.div({
     gridAutoFlow: 'column',
     gridAutoColumns: '1fr',
     gridGap: 60,
+    [isMobile]: {
+        gridAutoFlow: 'row',
+    },
 })

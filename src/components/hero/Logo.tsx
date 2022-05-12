@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { white } from 'styles/theme'
+import { isMobile, white } from 'styles/theme'
 import { Signet } from './Signet'
 import { useHeroAnimation } from './useHeroAnimation'
 
@@ -35,10 +35,13 @@ const Container = styled.header({
 
 const Title = styled.h1({
     fontWeight: 'lighter',
-    fontSize: 72,
     textAlign: 'center',
     paddingBottom: 50,
     letterSpacing: '0.1em',
+    fontSize: 72,
+    [isMobile]: {
+        fontSize: 48,
+    },
 })
 
 const Line = styled.div({
