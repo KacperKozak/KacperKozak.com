@@ -1,24 +1,33 @@
-import { Repository } from 'types/data'
+import { fetchPinnedRepositories } from './queries/pinnedRepositoriesQuery'
 
-export const repositories: Repository[] = [
-    {
-        title: 'Light Trails',
-        description:
-            'The extendable and framework agnostic animation library with timeline inspector.',
-        url: 'KacperKozak/light-trails',
-        tags: ['TypeScript', 'Rollup'],
-    },
-    {
-        title: 'KacperKozak.com',
-        description: 'Actually… this is what you are looking at.',
-        url: 'KacperKozak/KacperKozak.com',
-        tags: ['React', 'Next.js', 'TypeScript', `Styled Components`],
-    },
-    {
-        title: 'Project Snippets',
-        description:
-            'Keep code snippets directly in your project repository and let anyone create files easily and quickly.',
-        url: 'KacperKozak/project-snippets',
-        tags: ['CLI', 'Node'],
-    },
-]
+export interface PinnedRepository {
+    id: string
+    name: string
+    description: string
+    url: string
+    stargazerCount: number
+    repositoryTopics: RepositoryTopic[]
+}
+
+interface RepositoryTopic {
+    id: string
+    name: string
+}
+
+export const getPinnedRepositories = async (
+    count: number,
+): Promise<PinnedRepository[]> => {
+    const response = await fetchPinnedRepositories(count)
+
+    return response.user.pinnedItems.nodes.map((pinnedRepository) => ({
+        id: pinnedRepository.id,
+        name: pinnedRepository.name,
+        description: pinnedRepository.description,
+        url: pinnedRepository.url,
+        stargazerCount: pinnedRepository.stargazerCount,
+        repositoryTopics: pinnedRepository.repositoryTopics.edges.map((edge) => ({
+            id: edge.node.topic.id,
+            name: edge.node.topic.name,
+        })),
+    }))
+}

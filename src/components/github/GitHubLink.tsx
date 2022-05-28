@@ -1,24 +1,23 @@
 import styled from '@emotion/styled'
 import { ExternalLink } from 'components/buttons/ExternalLink'
 import { Icon } from 'components/icon/Icon'
+import { PinnedRepository } from 'data/repositories'
 import React from 'react'
-import { border, borderStrong, muted, white } from 'styles/theme'
-import { Repository } from 'types/data'
-import { githubUrl } from 'utils/url'
+import { border, muted, white } from 'styles/theme'
 
 interface GitHubLinkProps {
-    repository: Repository
+    repository: PinnedRepository
 }
 
 export const GitHubLink = ({
-    repository: { title, description, tags, url },
+    repository: { name, description, url, repositoryTopics, stargazerCount },
 }: GitHubLinkProps) => {
     return (
-        <Container href={githubUrl(url)}>
-            <Header>
+        <Container href={url}>
+            <Header title={`Stars: ${stargazerCount}`}>
                 <HeaderLink>
                     <Icon name="GitHub" />
-                    <Title>{title}</Title>
+                    <Title>{name}</Title>
                     <Icon name="ChevronRight" />
                 </HeaderLink>
             </Header>
@@ -26,8 +25,8 @@ export const GitHubLink = ({
             <Description>{description}</Description>
 
             <Tags>
-                {tags.map((tag) => (
-                    <Tag key={tag}>{tag}</Tag>
+                {repositoryTopics.map((topic) => (
+                    <Tag key={topic.id}>{topic.name}</Tag>
                 ))}
             </Tags>
         </Container>
