@@ -129,7 +129,7 @@ const lineShader = GLSL`
 `
 
 export const shaders = Shaders.create({
-    helloBlue: {
+    background: {
         frag: lineShader,
     },
 })

@@ -1,4 +1,4 @@
-import Background from 'components/bg/Background'
+import { Background } from 'components/bg/Background'
 import { useHeroAnimation } from 'components/hero/useHeroAnimation'
 import { Container } from 'components/layout/Container'
 import React, { ReactNode } from 'react'

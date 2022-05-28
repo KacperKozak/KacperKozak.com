@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import { ExternalLink } from 'components/buttons/ExternalLink'
 import { Icon } from 'components/icon/Icon'
 import React from 'react'
-import { border, muted, white } from 'styles/theme'
+import { border, borderStrong, muted, white } from 'styles/theme'
 import { Repository } from 'types/data'
 import { githubUrl } from 'utils/url'
 
@@ -14,9 +14,9 @@ export const GitHubLink = ({
     repository: { title, description, tags, url },
 }: GitHubLinkProps) => {
     return (
-        <article>
+        <Container href={githubUrl(url)}>
             <Header>
-                <HeaderLink href={githubUrl(url)}>
+                <HeaderLink>
                     <Icon name="GitHub" />
                     <Title>{title}</Title>
                     <Icon name="ChevronRight" />
@@ -30,7 +30,7 @@ export const GitHubLink = ({
                     <Tag key={tag}>{tag}</Tag>
                 ))}
             </Tags>
-        </article>
+        </Container>
     )
 }
 
@@ -40,9 +40,10 @@ const Header = styled.header({
     display: 'flex',
     flexDirection: 'column',
     borderBottom: border,
+    transition: 'all 0.1s ease',
 })
 
-const HeaderLink = styled(ExternalLink)({
+const HeaderLink = styled.div({
     display: 'flex',
     alignItems: 'center',
     columnGap: 10,
@@ -78,9 +79,17 @@ const Tags = styled.ul({
     alignItems: 'center',
     columnGap: 16,
     borderTop: border,
+    transition: 'all 0.12s ease-out',
 })
 
 const Tag = styled.li({
     color: muted,
     fontSize: '12px',
+})
+
+const Container = styled(ExternalLink)({
+    textDecoration: 'none',
+    [`&:hover ${Header}, &:hover ${Tags}`]: {
+        borderColor: white,
+    },
 })

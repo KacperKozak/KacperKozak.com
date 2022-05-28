@@ -1,37 +1,36 @@
-import { keyframes } from '@emotion/react'
 import styled from '@emotion/styled'
 import { Node } from 'gl-react'
 import { Surface } from 'gl-react-dom'
 import { useTime } from 'hooks/useTime'
-import React, { forwardRef } from 'react'
+import React, { forwardRef, useMemo } from 'react'
 import { shaders } from './shaders'
 
 interface BackgroundProps {
     enabled: boolean
 }
 
-export const Background = forwardRef<HTMLDivElement, BackgroundProps>(({ enabled }, ref) => {
-    const time = useTime(enabled)
+export const Background = forwardRef<HTMLDivElement, BackgroundProps>(
+    ({ enabled }, ref) => {
+        const time = useTime(enabled)
 
-    if (typeof window === 'undefined') return null
+        const width = window?.innerWidth
+        const height = window?.innerHeight
 
-    const width = window.innerWidth
-    const height = window.innerHeight
-
-    return (
-        <Wrapper ref={ref}>
-            <Surface width={width} height={height}>
-                <Node
-                    shader={shaders.helloBlue}
-                    uniforms={{
-                        time: time / 100,
-                        resolution: [width, height],
-                    }}
-                />
-            </Surface>
-        </Wrapper>
-    )
-})
+        return (
+            <Wrapper ref={ref}>
+                <Surface width={width} height={height}>
+                    <Node
+                        shader={shaders.background}
+                        uniforms={{
+                            time: time / 100,
+                            resolution: [width, height],
+                        }}
+                    />
+                </Surface>
+            </Wrapper>
+        )
+    },
+)
 
 const Wrapper = styled.div({
     position: 'fixed',
@@ -42,5 +41,3 @@ const Wrapper = styled.div({
     zIndex: -1,
     opacity: 0,
 })
-
-export default Background
