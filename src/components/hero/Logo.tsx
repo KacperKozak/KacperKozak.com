@@ -1,16 +1,16 @@
 import styled from '@emotion/styled'
-import { isMobile, white } from 'styles/theme'
+import { isMobile } from 'styles/theme'
 import { Signet } from './Signet'
 import { useHeroAnimation } from './useHeroAnimation'
 
 interface LogoProps {
-    anim: ReturnType<typeof useHeroAnimation>
+    animation: ReturnType<typeof useHeroAnimation>
 }
 
-export const Logo = ({ anim }: LogoProps) => {
+export const Logo = ({ animation }: LogoProps) => {
     const {
         refs: { titleRef, topLineRef, leftLineRef, rightLineRef, signetRef },
-    } = anim
+    } = animation
 
     return (
         <>
@@ -49,9 +49,10 @@ const Line = styled.div({
     top: 0,
     bottom: 0,
     margin: 'auto',
-    backgroundColor: white,
+    backgroundColor: 'currentColor',
     borderRadius: 3,
     height: 3,
+    opacity: 0.5,
 })
 
 const offset = 'calc(50% + 70px)'
@@ -71,7 +72,8 @@ const RightLine = styled(Line)({
 const TopLine = styled(Line)({
     left: 0,
     right: 0,
-    bottom: 'calc(100% + 80px)',
+    bottom: 'calc(100% + 20px)',
+    top: 'auto',
     width: 3,
     height: 50,
     transformOrigin: 'bottom',

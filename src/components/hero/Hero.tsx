@@ -1,7 +1,7 @@
 import { Background } from 'components/bg/Background'
 import { useHeroAnimation } from 'components/hero/useHeroAnimation'
 import { Container } from 'components/layout/Container'
-import React, { ReactNode } from 'react'
+import { ReactNode } from 'react'
 import Logo from './Logo'
 
 interface HeroProps {
@@ -14,7 +14,7 @@ export const Hero = ({ children }: HeroProps) => {
     return (
         <>
             <Container>
-                <Logo anim={anim} />
+                <Logo animation={anim} />
                 {children}
             </Container>
             <Background enabled={anim.startBg} ref={anim.refs.bgRef} />

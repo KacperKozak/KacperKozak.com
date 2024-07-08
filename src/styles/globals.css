@@ -4,6 +4,11 @@
     box-sizing: border-box;
 }
 
+:root {
+    --color-1: rgb(138, 181, 210);
+    --color-2: rgb(157, 198, 209);
+}
+
 html,
 body {
     padding: 0;
@@ -15,8 +20,21 @@ body {
 body {
     background: #000;
     background-size: cover;
-    color: white;
     overflow-x: hidden;
+    color: var(--color-1);
+    animation: fade 3s infinite alternate;
+}
+
+@keyframes fade {
+    0% {
+        color: var(--color-1);
+    }
+    50% {
+        color: var(--color-2);
+    }
+    100% {
+        color: var(--color-1);
+    }
 }
 
 a {

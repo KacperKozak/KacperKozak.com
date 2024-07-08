@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import { Node } from 'gl-react'
 import { Surface } from 'gl-react-dom'
 import { useTime } from 'hooks/useTime'
-import React, { forwardRef, useMemo } from 'react'
+import { forwardRef } from 'react'
 import { shaders } from './shaders'
 
 interface BackgroundProps {
@@ -22,8 +22,8 @@ export const Background = forwardRef<HTMLDivElement, BackgroundProps>(
                     <Node
                         shader={shaders.background}
                         uniforms={{
-                            time: time / 100,
-                            resolution: [width, height],
+                            u_time: time * 2,
+                            u_resolution: [width, height],
                         }}
                     />
                 </Surface>

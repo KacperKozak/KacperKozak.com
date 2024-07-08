@@ -1,3 +1,4 @@
+import styled from '@emotion/styled'
 import React from 'react'
 import ChevronRight from './icons/chevron-right.svg'
 import GitHub from './icons/github.svg'
@@ -14,5 +15,17 @@ interface IconProps {
 export const Icon = ({ name }: IconProps) => {
     const Component = icons[name]
 
-    return <Component />
+    return (
+        <Container>
+            <Component />
+        </Container>
+    )
 }
+
+const Container = styled.div({
+    width: 24,
+    height: 24,
+    'path': {
+        stroke: 'currentColor',
+    },
+})

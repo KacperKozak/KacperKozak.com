@@ -32,8 +32,8 @@ export const useHeroAnimation = () => {
         const o = valChain(0)
         const bgFade = [
             action((isAfter) => isAfter && setStartBg(true)),
+            fromTo({ opacity: o(0.9) }, speed),
             fromTo({ opacity: o(0.7) }, speed),
-            fromTo({ opacity: o(0.4) }, speed),
         ]
 
         const signetTrail = trail(signetRef.current, [stroke])

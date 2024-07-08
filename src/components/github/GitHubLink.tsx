@@ -1,9 +1,21 @@
 import styled from '@emotion/styled'
+import { Background } from 'components/bg/Background'
 import { ExternalLink } from 'components/buttons/ExternalLink'
 import { Icon } from 'components/icon/Icon'
 import { PinnedRepository } from 'data/repositories'
 import React from 'react'
-import { border, muted, white } from 'styles/theme'
+import {
+    border,
+    borderColor,
+    borderStrong,
+    borderStrongColor,
+    muted,
+    transition,
+    primary,
+    secondary,
+    bg,
+    bgStrong,
+} from 'styles/theme'
 
 interface GitHubLinkProps {
     repository: PinnedRepository
@@ -33,20 +45,18 @@ export const GitHubLink = ({
     )
 }
 
-const margins = '20px'
-
 const Header = styled.header({
+    padding: '16px 12px',
     display: 'flex',
     flexDirection: 'column',
     borderBottom: border,
-    transition: 'all 0.1s ease',
+    transition,
 })
 
 const HeaderLink = styled.div({
     display: 'flex',
     alignItems: 'center',
     columnGap: 10,
-    padding: `${margins} 0`,
 })
 
 const Title = styled.h3({
@@ -54,41 +64,50 @@ const Title = styled.h3({
     flex: 1,
     fontStyle: 'normal',
     fontWeight: 400,
-    fontSize: '24px',
+    fontSize: '20px',
     lineHeight: 1.2,
 })
 
 const Description = styled.p({
     minHeight: 120,
-    padding: `${margins} 0`,
+    padding: '8px 12px',
     margin: 0,
     fontWeight: 400,
-    fontSize: '16px',
+    fontSize: '14px',
     lineHeight: 1.5,
+    color: secondary,
 })
 
 const Tags = styled.ul({
     margin: 0,
-    padding: 0,
-    paddingTop: 10,
+    padding: '8px 12px',
     listStyle: 'none',
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'flex-start',
     alignItems: 'center',
     columnGap: 16,
+    rowGap: 4,
     borderTop: border,
-    transition: 'all 0.12s ease-out',
+    transition,
 })
 
 const Tag = styled.li({
-    color: muted,
+    opacity: 0.8,
     fontSize: '12px',
 })
 
 const Container = styled(ExternalLink)({
+    backgroundColor: bg,
+    border: border,
+    borderRadius: 8,
     textDecoration: 'none',
+    transition,
+    '&:hover': {
+        backgroundColor: bgStrong,
+        borderColor: borderStrongColor,
+    },
     [`&:hover ${Header}, &:hover ${Tags}`]: {
-        borderColor: white,
+        borderColor: borderStrongColor,
     },
 })
